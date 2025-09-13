@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="product-page">
+    <header>
+        <div class="logo">Virtual Try-On</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="product-details-page">
+        <div class="product-container">
+            <div class="product-image">
+                <img id="product-image" src="" alt="Product Image">
+            </div>
+            <div class="product-info">
+                <h1 id="product-title">Product Name</h1>
+                <p><strong>Price:</strong> <span id="product-price"></span></p>
+                <p><strong>Available Sizes:</strong> <span id="product-sizes"></span></p>
+                <p><strong>Description:</strong></p>
+                <p id="product-desc"></p>
+                <button onclick="alert('Added to Cart!')">Add to Cart</button>
+                <button onclick="alert('Virtual Try On coming soon!')">Virtual Try On</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Virtual Try-On. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const products = {
+            men: {
+                1: {
+                    title: "Men’s Shirt",
+                    image: "images/men1.jpg",
+                    price: "₹1,299",
+                    sizes: "S, M, L, XL",
+                    description: "Classic cotton shirt, perfect for casual and formal wear."
+                },
+                2: {
+                    title: "Men’s Pant",
+                    image: "images/men2.jpg",
+                    price: "₹1,599",
+                    sizes: "S, M, L, XL",
+                    description: "Comfortable and stylish pant for everyday use."
+                },
+                3: {
+                    title: "Men’s Jacket",
+                    image: "images/men3.jpg",
+                    price: "₹2,499",
+                    sizes: "M, L, XL",
+                    description: "Warm jacket suitable for winter seasons."
+                },
+                4: {
+                    title: "Men’s T-shirt",
+                    image: "images/men4.jpg",
+                    price: "₹799",
+                    sizes: "S, M, L, XL",
+                    description: "Soft cotton t-shirt ideal for daily wear."
+                }
+            },
+            women: {
+                1: {
+                    title: "Women’s Dress",
+                    image: "images/women1.jpg",
+                    price: "₹1,899",
+                    sizes: "S, M, L",
+                    description: "Elegant dress perfect for parties and gatherings."
+                },
+                2: {
+                    title: "Women’s Kurtha",
+                    image: "images/women2.jpg",
+                    price: "₹1,299",
+                    sizes: "S, M, L",
+                    description: "Traditional kurtha made with soft fabric."
+                },
+                3: {
+                    title: "Women’s Top",
+                    image: "images/women3.jpg",
+                    price: "₹799",
+                    sizes: "S, M, L",
+                    description: "Trendy top to pair with jeans or skirts."
+                },
+                4: {
+                    title: "Women’s Pant",
+                    image: "images/women4.jpg",
+                    price: "₹1,299",
+                    sizes: "S, M, L",
+                    description: "Comfortable pant suitable for daily wear."
+                }
+            },
+            kids: {
+                1: {
+                    title: "Kids T-shirt",
+                    image: "images/kids1.jpg",
+                    price: "₹499",
+                    sizes: "S, M",
+                    description: "Bright and cheerful t-shirt for kids."
+                },
+                2: {
+                    title: "Kids Shirt",
+                    image: "images/kids2.jpg",
+                    price: "₹699",
+                    sizes: "S, M",
+                    description: "Stylish shirt with fun prints."
+                },
+                3: {
+                    title: "Kids Frock",
+                    image: "images/kids3.jpg",
+                    price: "₹799",
+                    sizes: "S, M, L",
+                    description: "Comfortable frock for playtime and outings."
+                },
+                4: {
+                    title: "Kids Pant",
+                    image: "images/kids4.jpg",
+                    price: "₹599",
+                    sizes: "S, M, L",
+                    description: "Easy-to-wear pant for kids."
+                }
+            }
+        };
+
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                category: params.get('category'),
+                id: params.get('id')
+            };
+        }
+
+        window.onload = () => {
+            const { category, id } = getQueryParams();
+            if (products[category] && products[category][id]) {
+                const product = products[category][id];
+                document.getElementById("product-title").textContent = product.title;
+                document.getElementById("product-image").src = product.image;
+                document.getElementById("product-price").textContent = product.price;
+                document.getElementById("product-sizes").textContent = product.sizes;
+                document.getElementById("product-desc").textContent = product.description;
+            }
+        };
+    </script>
+</body>
+</html>
